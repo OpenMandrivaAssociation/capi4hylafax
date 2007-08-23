@@ -12,7 +12,7 @@ Patch0:		capi4hylafax-01.02.03-mdk.diff
 Patch1:		capi4hylafax-01.02.03-x86_64.diff
 BuildRequires:	autoconf2.5
 BuildRequires:	automake1.7
-BuildRequires:	textutils
+BuildRequires:	coreutils
 BuildRequires:	isdn4k-utils-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
