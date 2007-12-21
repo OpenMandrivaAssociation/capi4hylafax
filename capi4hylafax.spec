@@ -17,6 +17,7 @@ BuildRequires:	isdn4k-utils-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 #Requires:	hylafax-server >= 4.1.5
+Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 CAPI4HylaFAX provides the programs to make Hylafax compatibel to
