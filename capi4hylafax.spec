@@ -1,7 +1,7 @@
 Summary:	CAPI 2.0 Interface to Hylafax
 Name:		capi4hylafax
 Version:	01.02.03
-Release:	%mkrel 4
+Release:	%mkrel 6
 License:	GPL
 Group:		Communications
 URL:		http://capi4linux.thepenguin.de/
