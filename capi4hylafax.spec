@@ -10,6 +10,7 @@ URL:		http://capi4linux.thepenguin.de/
 Source0:	%{name}-%{version}.tar.bz2
 Patch0:		capi4hylafax-01.02.03-mdk.diff
 Patch1:		capi4hylafax-01.02.03-x86_64.diff
+Patch2:		capi4hylafax-01.02.03-fix-str-fmt.patch
 BuildRequires:	autoconf2.5
 BuildRequires:	automake1.7
 BuildRequires:	coreutils
@@ -28,6 +29,7 @@ the CAPI 2.0 interface used by AVM ISDN cards.
 %setup -q
 %patch0 -p1 -b .mdk
 %patch1 -p0 -b .x86_64
+%patch2 -p0 -b .str
 
 # clean up CVS stuff
 for i in `find . -type d -name CVS` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
