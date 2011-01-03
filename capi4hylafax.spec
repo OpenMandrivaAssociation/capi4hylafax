@@ -1,7 +1,7 @@
 Summary:	CAPI 2.0 Interface to Hylafax
 Name:		capi4hylafax
 Version:	01.02.03
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPL
 Group:		Communications
 URL:		http://capi4linux.thepenguin.de/
@@ -12,7 +12,7 @@ Patch0:		capi4hylafax-01.02.03-mdk.diff
 Patch1:		capi4hylafax-01.02.03-x86_64.diff
 Patch2:		capi4hylafax-01.02.03-fix-str-fmt.patch
 BuildRequires:	autoconf2.5
-BuildRequires:	automake1.7
+BuildRequires:	automake
 BuildRequires:	coreutils
 BuildRequires:	isdn4k-utils-devel
 BuildRequires:	libstdc++-devel
@@ -52,7 +52,7 @@ export CXXFLAGS="%{optflags}"
 %endif
 
 rm -f configure
-libtoolize --copy --force && aclocal-1.7 && autoconf && automake-1.7
+libtoolize --copy --force && aclocal && autoconf && automake
 
 %configure2_5x \
     --with-hylafax-spooldir=/var/spool/fax
