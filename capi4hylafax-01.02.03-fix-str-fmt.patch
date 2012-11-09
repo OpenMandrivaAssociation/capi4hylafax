@@ -1,0 +1,79 @@
+--- src/faxrecv/faxrecv.cpp.str	2009-01-24 05:04:47.000000000 +0100
++++ src/faxrecv/faxrecv.cpp	2009-01-24 05:04:57.000000000 +0100
+@@ -407,7 +407,7 @@
+     sprintf (timebuf + strlen(timebuf), ".%02lu: [%5d]: ", tv.tv_usec / 10000, getpid());
+ 
+     if (hJobFile) {
+-        fprintf (hJobFile, timebuf);
++        fprintf (hJobFile, "%s", timebuf);
+         vfprintf (hJobFile, text, params);
+         va_end (params);
+         va_start (params, text);
+--- src/faxrecv/recvmain.cpp.str	2009-01-24 05:05:08.000000000 +0100
++++ src/faxrecv/recvmain.cpp	2009-01-24 05:06:15.000000000 +0100
+@@ -118,10 +118,10 @@
+     }
+ 
+     if (hLogFile) {
+-        fprintf (hLogFile, timebuf);
++        fprintf (hLogFile, "%s", timebuf);
+         fprintf (hLogFile, "%s - ", RecvProgName.GetPointer());
+         if (statusText) {
+-            fprintf (hLogFile, statusText);
++            fprintf (hLogFile, "%s", statusText);
+         }
+         va_copy(lparams, params);
+         vfprintf (hLogFile, text, lparams);
+@@ -134,7 +134,7 @@
+         char errortext[MAX_STRING_SIZE];
+         vsnprintf (errortext, MAX_STRING_SIZE, text, params);
+         openlog (DEFAULT_RECVPROG_NAME, LOG_PERROR, 0);
+-        syslog (priority, errortext);
++        syslog (priority, "%s", errortext);
+         closelog();
+     }
+ }
+--- src/faxsend/faxsend.cpp.str	2009-01-24 05:06:38.000000000 +0100
++++ src/faxsend/faxsend.cpp	2009-01-24 05:07:20.000000000 +0100
+@@ -664,7 +664,7 @@
+     sprintf (timebuf + strlen(timebuf), ".%02lu: [%5d]: ", tv.tv_usec / 10000, getpid());
+ 
+     if (hJobFile) {
+-        fprintf (hJobFile, timebuf);
++        fprintf (hJobFile, "%s", timebuf);
+         vfprintf (hJobFile, text, params);
+         va_end (params);
+         va_start (params, text);
+@@ -703,10 +703,10 @@
+     }
+ 
+     if (hLogFile) {
+-        fprintf (hLogFile, timebuf);
++        fprintf (hLogFile, "%s", timebuf);
+         fprintf (hLogFile, DEFAULT_SENDPROG_NAME " - ");
+         if (statusText) {
+-            fprintf (hLogFile, statusText);
++            fprintf (hLogFile, "%s", statusText);
+         }
+         vfprintf (hLogFile, text, params);
+         va_end (params);
+@@ -717,7 +717,7 @@
+         char errortext[MAX_STRING_SIZE];
+         vsnprintf (errortext, MAX_STRING_SIZE, text, params);
+         openlog (DEFAULT_SENDPROG_NAME, LOG_PERROR, 0);
+-        syslog (priority, errortext);
++        syslog (priority, "%s", errortext);
+         closelog();
+     }
+     va_end (params);
+--- src/faxsend/sendmain.cpp.str	2009-01-24 05:07:31.000000000 +0100
++++ src/faxsend/sendmain.cpp	2009-01-24 05:07:40.000000000 +0100
+@@ -173,7 +173,7 @@
+     ftruncate (fileno (qf), 0);
+     while (textQ.Get (&ne) == vTrue) {
+         dassert (ne != 0);
+-        fprintf (qf, ne);
++        fprintf (qf, "%s", ne);
+         delete [] ne;
+     }
+     fclose (qf);

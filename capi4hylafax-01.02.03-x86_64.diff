@@ -1,0 +1,14 @@
+--- src/capi/CCSMesg.h	2003-07-08 16:52:38.000000000 +0200
++++ src/capi/CCSMesg.h.oden	2005-01-01 08:35:57.049062310 +0100
+@@ -87,10 +87,10 @@
+         DataHandle (handle),
+         Flags (flags) {}
+ 
++    c_dataptr Data;
+     c_word    DataLength;
+     c_word    DataHandle;
+     c_word    Flags;
+-    c_dataptr Data
+ };
+ 
+ #else // C_PLATFORM_64

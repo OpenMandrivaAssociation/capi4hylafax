@@ -1,0 +1,158 @@
+diff -Naur capi4hylafax-01.02.03/config.faxCAPI capi4hylafax-01.02.03.oden/config.faxCAPI
+--- capi4hylafax-01.02.03/config.faxCAPI	2002-10-17 09:42:04.000000000 +0200
++++ capi4hylafax-01.02.03.oden/config.faxCAPI	2004-09-13 15:19:25.052828488 +0200
+@@ -96,7 +96,7 @@
+ #
+ # default   ""
+ #
+-LogFile:                # /tmp/capifax.log
++LogFile:                /var/spool/fax/log/capi4hylafax.log
+ 
+ 
+ # Der Befehl "LogTraceLevel" gibt die Menge der Daten an, die in ein LogFile
+@@ -107,7 +107,7 @@
+ #
+ # default   0
+ #
+-LogTraceLevel:          0
++LogTraceLevel:          4
+ 
+ 
+ # "LogFileMode" sind die Angaben (mode), aufgrund derer sowohl das gerade
+@@ -267,7 +267,7 @@
+     #
+     # default   0
+     #
+-    UseISDNFaxService:          0
++    UseISDNFaxService:          1
+ 
+ 
+     # Gibt die Dauer in Sekunden an, die auf eine Verbindungsannahme durch die
+@@ -305,7 +305,7 @@
+         #
+         # default   0
+         #
+-        AcceptSpeech:           0
++        AcceptSpeech:           1
+ 
+ 
+         # Sofern man DDI nutzen will, sollte man "UseDDI" auf 1 stellen.
+diff -Naur capi4hylafax-01.02.03/configure capi4hylafax-01.02.03.oden/configure
+--- capi4hylafax-01.02.03/configure	2004-06-21 11:22:24.000000000 +0200
++++ capi4hylafax-01.02.03.oden/configure	2004-09-13 15:19:52.220698344 +0200
+@@ -1044,7 +1044,7 @@
+                           include additional configurations [automatic]
+   --with-hylafax-spooldir=DIR
+                           Set dir where hylafax spool is installed.
+-                          (/var/spool/hylafax)
++                          (/var/spool/fax)
+ 
+ Some influential environment variables:
+   CXX         C++ compiler command
+@@ -19283,7 +19283,7 @@
+   withval="$with_hylafax_spooldir"
+   hylafaxspooldir="$withval"
+ else
+-  hylafaxspooldir="/var/spool/hylafax"
++  hylafaxspooldir="/var/spool/fax"
+ 
+ fi;
+ 
+diff -Naur capi4hylafax-01.02.03/configure.in capi4hylafax-01.02.03.oden/configure.in
+--- capi4hylafax-01.02.03/configure.in	2004-06-21 11:22:25.000000000 +0200
++++ capi4hylafax-01.02.03.oden/configure.in	2004-09-13 15:20:02.077199928 +0200
+@@ -50,9 +50,9 @@
+ dnl Optional hylafax spool directory
+ AC_ARG_WITH(hylafax-spooldir,
+     AC_HELP_STRING([--with-hylafax-spooldir=DIR],
+-                   [Set dir where hylafax spool is installed. (/var/spool/hylafax)]),
++                   [Set dir where hylafax spool is installed. (/var/spool/fax)]),
+     hylafaxspooldir="$withval",
+-    hylafaxspooldir="/var/spool/hylafax"
++    hylafaxspooldir="/var/spool/fax"
+ )
+ 
+ dnl Optional debug
+diff -Naur capi4hylafax-01.02.03/install capi4hylafax-01.02.03.oden/install
+--- capi4hylafax-01.02.03/install	2003-03-10 14:14:51.000000000 +0100
++++ capi4hylafax-01.02.03.oden/install	2004-09-13 15:20:11.485769608 +0200
+@@ -7,7 +7,7 @@
+ SuSEbinpath=bin
+ SourceDirectory=
+ DestDirectory=/usr/local/bin
+-HylafaxSpoolDir=/var/spool/hylafax
++HylafaxSpoolDir=/var/spool/fax
+ StandAloneInst=0
+ Uninstall=0
+ ImpConf=1
+diff -Naur capi4hylafax-01.02.03/LIESMICH.html capi4hylafax-01.02.03.oden/LIESMICH.html
+--- capi4hylafax-01.02.03/LIESMICH.html	2003-01-10 13:28:31.000000000 +0100
++++ capi4hylafax-01.02.03.oden/LIESMICH.html	2004-09-13 15:18:46.690660424 +0200
+@@ -360,7 +360,7 @@
+         dann M&Uuml;SSEN (!) Sie die entsprechenden Einstellungen manuell mit
+         Hilfe eines Editors direkt in der folgenden Datei vornehmen:<BR>
+          /var/spool/fax/etc/config.faxCAPI (in SuSE-Linux)<BR>
+-         /var/spool/hylafax/etc/config.faxCAPI (HylaFAX 4.1.x)</TD>
++         /var/spool/fax/etc/config.faxCAPI (HylaFAX 4.1.x)</TD>
+       </TR>
+     </TABLE>
+     
+diff -Naur capi4hylafax-01.02.03/README.html capi4hylafax-01.02.03.oden/README.html
+--- capi4hylafax-01.02.03/README.html	2003-01-10 13:28:31.000000000 +0100
++++ capi4hylafax-01.02.03.oden/README.html	2004-09-13 15:18:50.639060176 +0200
+@@ -345,7 +345,7 @@
+         module after installation, you MUST (!) manually perform the relevant
+         settings in the file:<BR>
+         /var/spool/fax/etc/config.faxCAPI (in SuSE Linux)<BR>
+-         /var/spool/hylafax/etc/config.faxCAPI (HylaFAX 4.1.x)</TD>
++         /var/spool/fax/etc/config.faxCAPI (HylaFAX 4.1.x)</TD>
+       </TR>
+     </TABLE>
+     
+diff -Naur capi4hylafax-01.02.03/Readme_src capi4hylafax-01.02.03.oden/Readme_src
+--- capi4hylafax-01.02.03/Readme_src	2002-11-13 15:28:32.000000000 +0100
++++ capi4hylafax-01.02.03.oden/Readme_src	2004-09-13 15:18:56.721135560 +0200
+@@ -13,7 +13,7 @@
+     ./install
+ 
+ If the Hylafax spool directory is located in another place than
+-/var/spool/hylafax, you must specify the path as follows in order to compile
++/var/spool/fax, you must specify the path as follows in order to compile
+ and install the sources:
+ 
+     ./configure --with-hylafax-spooldir=DIR
+diff -Naur capi4hylafax-01.02.03/src/defaults.h.in capi4hylafax-01.02.03.oden/src/defaults.h.in
+--- capi4hylafax-01.02.03/src/defaults.h.in	2002-08-23 17:37:34.000000000 +0200
++++ capi4hylafax-01.02.03.oden/src/defaults.h.in	2004-09-13 15:06:56.746588328 +0200
+@@ -30,7 +30,7 @@
+ #define HYLAFAX_RECV_CMD            "bin/faxrcvd"
+ #define HYLAFAX_POLL_CMD            "bin/pollrcvd"
+ #define HYLAFAX_SEQF_FILE           "seqf"
+-#define HYLAFAX_XFERLOG             "etc/xferfaxlog"
++#define HYLAFAX_XFERLOG             "log/xferfaxlog"
+ 
+ #define DEFAULT_FAX_USER            "uucp"
+ #define DEFAULT_DEVICE_NAME         "faxCAPI"
+diff -Naur capi4hylafax-01.02.03/src/scripts/setupconffile capi4hylafax-01.02.03.oden/src/scripts/setupconffile
+--- capi4hylafax-01.02.03/src/scripts/setupconffile	2002-03-13 11:42:47.000000000 +0100
++++ capi4hylafax-01.02.03.oden/src/scripts/setupconffile	2004-09-13 15:17:27.653675872 +0200
+@@ -1,3 +1,4 @@
++#!/bin/sh
+ #
+ #   default values
+ #
+@@ -16,7 +17,8 @@
+ DDISamples="$DDISamples\nSample for DDI Length   : 3"
+ DDISamples="$DDISamples\nSample for Incoming DDIs: 10, 100-300"
+ 
+-ConfigFileName="/var/spool/hylafax/etc/config.faxCAPI"
++ConfigFileName="/var/spool/fax/etc/config.faxCAPI"
++
+ if [ -n "$1" ] ; then
+     ConfigFileName="$1/etc/config.faxCAPI"
+ elif [ ! -e $ConfigFileName ] ; then
+@@ -278,3 +280,4 @@
+ rem_res
+ return 0
+ }
++main_config_dialog
