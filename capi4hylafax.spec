@@ -83,3 +83,50 @@ install -m755 src/scripts/setupconffile %{buildroot}%{_bindir}/capi4hylafax-faxa
 %attr(0755,root,root) %{_bindir}/c2faxsend
 
 
+
+
+%changelog
+* Mon Jan 03 2011 Oden Eriksson <oeriksson@mandriva.com> 01.02.03-9mdv2011.0
++ Revision: 627769
+- don't force the usage of automake1.7
+
+* Thu Dec 09 2010 Oden Eriksson <oeriksson@mandriva.com> 01.02.03-8mdv2011.0
++ Revision: 616939
+- the mass rebuild of 2010.0 packages
+
+* Thu Sep 10 2009 Thierry Vignaud <tv@mandriva.org> 01.02.03-7mdv2010.0
++ Revision: 436940
+- rebuild
+
+* Sat Jan 24 2009 Funda Wang <fwang@mandriva.org> 01.02.03-6mdv2009.1
++ Revision: 333164
+- fix str fmt
+
+* Tue Jul 22 2008 Thierry Vignaud <tv@mandriva.org> 01.02.03-6mdv2009.0
++ Revision: 240485
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Thu Aug 23 2007 Thierry Vignaud <tv@mandriva.org> 01.02.03-4mdv2008.0
++ Revision: 69928
+- fileutils, sh-utils & textutils have been obsoleted by coreutils a long time ago
+
+
+* Fri Mar 02 2007 Oden Eriksson <oeriksson@mandriva.com> 01.02.03-3mdv2007.0
++ Revision: 131175
+- Import capi4hylafax
+
+* Fri Feb 03 2006 Oden Eriksson <oeriksson@mandriva.com> 01.02.03-3mdk
+- rebuild
+
+* Sat Jan 01 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 01.02.03-2mdk
+- added P1 (amd64 fixes, debian)
+
+* Tue Sep 14 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 01.02.03-1mdk
+- initial mandrake package
+- used parts from the spec file by Herbert U. Hübner
+- added P0
+
