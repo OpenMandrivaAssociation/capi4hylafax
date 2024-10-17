@@ -4,7 +4,7 @@ Version:	01.02.03
 Release:	10
 License:	GPL
 Group:		Communications
-URL:		http://capi4linux.thepenguin.de/
+URL:		https://capi4linux.thepenguin.de/
 # http://mungo.homelinux.org/
 # ftp://ftp.avm.de/tools/capi4hylafax.linux/
 Source0:	%{name}-%{version}.tar.bz2
